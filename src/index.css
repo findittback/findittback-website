@@ -1,0 +1,94 @@
+@import "tailwindcss";
+
+@theme {
+  /* -- Find Me design tokens ------------------------------------------- */
+  /* Ink: deep navy, the "night sky" the brass tag hangs against */
+  --color-ink-950: #0a1a26;
+  --color-ink-900: #0f2436;
+  --color-ink-800: #163a4d;
+  --color-ink-700: #1f4d63;
+
+  /* Paper: warm off-white for content sections (not the cliché cream) */
+  --color-paper-50: #f7f5f0;
+  --color-paper-100: #efece3;
+  --color-paper-200: #e3ded0;
+
+  /* Brass: the tag's hardware colour, used as the single warm accent */
+  --color-brass-300: #e0b872;
+  --color-brass-400: #c9973f;
+  --color-brass-500: #a97a2e;
+
+  /* Status colours */
+  --color-recovered-500: #4c8c6b;
+  --color-recovered-100: #e1efe7;
+  --color-lost-500: #c85a3a;
+  --color-lost-100: #f7e4dd;
+
+  --color-slate-800: #2b3440;
+  --color-slate-600: #5b6675;
+  --color-slate-400: #93a0ad;
+
+  --font-display: "Space Grotesk", "Inter", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-paper-50);
+  color: var(--color-slate-800);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background-color: var(--color-brass-300);
+  color: #000F26;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Signature tag motif -------------------------------------------------- */
+.tag-shape {
+  clip-path: polygon(18% 0%, 100% 0%, 100% 100%, 18% 100%, 0% 50%);
+}
+
+@keyframes tag-swing {
+  0% { transform: rotate(-3deg); }
+  50% { transform: rotate(3deg); }
+  100% { transform: rotate(-3deg); }
+}
+
+.tag-swing {
+  transform-origin: top center;
+  animation: tag-swing 6s ease-in-out infinite;
+}
+
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.rise-in {
+  animation: rise-in 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Focus visibility ------------------------------------------------------ */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--color-brass-400);
+  outline-offset: 2px;
+}
